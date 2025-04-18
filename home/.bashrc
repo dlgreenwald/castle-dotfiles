@@ -1,11 +1,16 @@
 #
 # ~/.bashrc
+# on OSX this needs to be sourced from .bash_profile
+# on Linux it is sourced directly
 #
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Setup SSH Agent
+# NEEDS TO BE MOVED TO A LINUX SPECIFIC FILE
+# $SSH_AUTH_SOCK is already set on OSX so no action needed.  Arch is a different story...but I should start using systemd for this
+# https://wiki.archlinux.org/title/SSH_keys#Start_ssh-agent_with_systemd_user
+# Setup SSH Agent 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -t 15m > "$XDG_RUNTIME_DIR/ssh-agent.env"
 fi
@@ -58,7 +63,7 @@ alias ulimit='/usr/bin/grc --colour=auto ulimit'
 alias uptime='/usr/bin/grc --colour=auto uptime'
 alias vmstat='/usr/bin/grc --colour=auto vmstat'
 
-alias ls='exa --icons -F -H --group-directories-first --git'
+alias ls='eza --icons -F -H --group-directories-first --git'
 alias ll='ls -alF'
 alias grep='grep --color=auto'
 alias egrep='grep -E $GREP_OPTS --color=auto'
@@ -71,7 +76,7 @@ export LESS='-R --use-color -Dd+r$Du+b$'
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANROFFOPT="-P -c"
 export PROMPT_COMMAND='history -a'
-export MAKEFLAGS="--jobs=$(nproc)"
+export MAKEFLAGS="--jobs=$(nproc)" #Potential move to linux specifc .bash file
 
 PS1='[\u@\h \W]\$ '
 

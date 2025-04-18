@@ -24,9 +24,10 @@ get_arch() {
 	fi
 }
 
-ARCHOS=$(grep arch /etc/os-release)
+
 
 is_arch() {
+	ARCHOS=$(grep arch /etc/os-release)
     if [[ "${ARCHOS}" =~ "ID" ]]; then return 0; else return 1; fi
 
 }
