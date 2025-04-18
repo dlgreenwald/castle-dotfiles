@@ -57,7 +57,7 @@ if is_mac; then
 		brew install "${missing[@]}"
 	fi
 elif is_arch; then
-	desired=(starship grc neofetch ncdu eza asdf qwert)
+	desired=(starship grc neofetch ncdu eza)
 	missing=()
 	check_pacman "missing" "${desired[@]}"
 		if [[ "${#missing[@]}" -gt 0 ]]; then
